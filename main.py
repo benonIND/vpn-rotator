@@ -49,12 +49,12 @@ def main():
                 except:
                     print("\033[1;31m[!] Input tidak valid\033[0m")
             elif choice == '2':
-                if True:
-                    interval = int(input("Interval (detik): "))
-                    print("\033[1;33m[!] Auto-rotate mulai...\033[0m")
-                    vpn.auto_rotate(interval)
-                else:
-                    print("\033[1;31m[!] Masukkan angka\033[0m")
+                interval = int(input("Interval (detik): "))
+                    if interval == True :
+                        print("\033[1;33m[!] Auto-rotate mulai...\033[0m")
+                        vpn.auto_rotate(interval)
+                    else:
+                        print("\033[1;31m[!] Masukkan angka\033[0m")
                 
             elif choice == '3':
                 print("\n\033[1;34mDNS SERVERS:\033[0m")
