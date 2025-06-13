@@ -11,7 +11,7 @@ VPN Manager dengan fitur auto-rotate IP dan DNS protection untuk Termux
 ## 📦 Instalasi
 1. Install requirements:
 ```bash
-pkg update && pkg install python openvpn -y
+pkg update && pkg install python root-repo openvpn -y
 pip install requests
 ```
 
