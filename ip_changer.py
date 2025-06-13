@@ -3,7 +3,6 @@ import time
 import requests
 from stem import Signal
 from stem.control import Controller
-from stem.connection import connect
 
 class IPChanger:
     def __init__(self):
@@ -15,18 +14,20 @@ class IPChanger:
             print("Jalankan: pkg install tor && pip install stem\033[0m")
             exit(1)
 
-    def change_ip(self):
+    def change_ip():
         try:
-            controller = connect(
-                control_port=9051,
-                #auth_method="COOKIE",  # atau "PASSWORD"
-                password= "wongedan"
-            )
-            if controller:
-                controller.signal(Signal.NEWNYM)
+            with Controller.from_port(port=9051) as controller:
+            # Method 1: Cookie Authentication (default)
+                try:
+                    controller.authenticate()
+                except:
+                # Method 2: Password Authentication
+                    controller.authenticate("wongedan")  # Pastikan berupa string
+            
+                controller.signal('NEWNYM')
+                print("[+] IP berhasil dirotasi")
         except Exception as e:
             print(f"[TOR ERROR] {str(e)}")
-
     def check_location(self):
         try:
             session = requests.session()
