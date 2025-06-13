@@ -17,7 +17,7 @@ pip install requests
 
 2. Download script:
 ```bash
-git clone https://github.com/username/vpn-rotator.git
+git clone https://github.com/benonIND/vpn-rotator.git
 cd vpn-rotator
 ```
 
@@ -91,15 +91,3 @@ Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 └── 📂 logs/
      └── vpn.log
 ```
-
-Fitur khusus banner:
-1. Warna terminal (ANSI escape codes)
-2. Box status yang rapi
-3. Informasi penting dalam layout compact
-4. Support dark/light mode terminal
-
-README.md mencakup:
-✅ Instalasi lengkap  
-✅ Contoh config  
-✅ Solusi error umum  
-※ Ganti `username` dengan GitHub Anda
