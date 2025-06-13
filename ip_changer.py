@@ -26,7 +26,7 @@ class IPChanger:
 
     def change_ip(self):
         try:
-            with Controller.from_port(port=9050) as controller:
+            with Controller.from_port(port=9051) as controller:
                 controller.authenticate()
                 controller.signal(Signal.NEWNYM)
                 time.sleep(5)  # Tunggu sirkuit baru
