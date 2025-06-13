@@ -60,12 +60,15 @@ def main():
                     print("\033[1;31m[!] Pilihan tidak valid\033[0m")
             
             elif choice == '4':  # Check Status
-                ip_info = vpn.get_ip_info()
-                print(f"\n\033[1;36mCURRENT STATUS:\033[0m")
-                print(f"VPN Server: {vpn.connected_server or 'Not Connected'}")
-                print(f"IP Address: {ip_info.get('ip', 'Unknown')}")
-                print(f"Location: {ip_info.get('country', 'Unknown')}")
-                print(f"ISP: {ip_info.get('isp', 'Unknown')}")
+                if not hasattr(vpn, 'get_ip_info'):
+                    print("\033[1;31m[!] Fitur cek IP tidak tersedia\033[0m")
+                else:
+                    ip_info = vpn.get_ip_info()
+                    print("\n\033[1;36m=== STATUS TERKINI ===\033[0m")
+                    print(f"VPN: {vpn.connected_server or 'Tidak terhubung'}")
+                    print(f"IP: {ip_info['ip']}")
+                    print(f"Lokasi: {ip_info['city']}, {ip_info['country']}")
+                    print(f"ISP: {ip_info['isp']}")
             
             elif choice == '5':
                 vpn.disconnect()
