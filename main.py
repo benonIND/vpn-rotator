@@ -5,6 +5,12 @@ from dns_manager import DNSManager
 import os
 import sys
 import time
+import signal
+
+def signal_handler(sig, frame):
+    print("\n\033[1;33m[!] Received CTRL+C, cleaning up...\033[0m")
+    vpn.disconnect()
+    sys.exit(0)
 
 def show_menu():
     print("\n\033[1;33mMAIN MENU:\033[0m")
@@ -25,6 +31,8 @@ def main():
         """Callback saat IP berhasil dirotate"""
         print(f"\n\033[1;36m[•] IP Baru: {ip_info['ip']}")
         print(f"Lokasi: {ip_info['country']}\033[0m")
+    
+    signal.signal(signal.SIGINT, signal_handler)
     try:
         while True:
             show_menu()
