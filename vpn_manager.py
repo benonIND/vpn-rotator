@@ -8,6 +8,7 @@ class VPNManager:
         self.ip_list = self._load_ip_list()
         self.current_connection = None
         self.connected_server = None
+        self.openvpn_process = None
         self.rotate_active = False
 
     def get_ip_info(self):
@@ -85,6 +86,19 @@ persist-tun
         self.connected_server = server_name
         return True
 
+    def disconnect(self):
+        """Putuskan koneksi VPN"""
+        try:
+            if self.openvpn_process:
+                os.kill(int(self.openvpn_process.pid), signal.SIGTERM)
+            os.system("pkill -f 'openvpn.*temp_vpn.conf'")  # Double kill
+            self.connected_server = None
+            print("\033[1;32m[✓] VPN disconnected\033[0m")
+            return True
+        except Exception as e:
+            print(f"\033[1;31m[!] Disconnect error: {str(e)}\033[0m")
+            return False
+    
     def auto_rotate(self, interval=300):
         """Ganti IP otomatis"""
         while True:
