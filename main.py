@@ -51,13 +51,10 @@ def main():
             elif choice == '2':
                 try :
                     interval = int(input("Interval (detik): "))
-                    if interval >= 1:
-                        print("\033[1;33m[!] Auto-rotate mulai...\033[0m")
-                        vpn.auto_rotate(interval)
-                    else :
-                        print("\033[1;31m[!] Masukkan angka\033[0m")
-                except:
-                        sys.exit(0)
+                    print("\033[1;33m[!] Auto-rotate mulai...\033[0m")
+                    vpn.auto_rotate(interval)
+                except ValueError:
+                    print("\033[1;31m[!] Masukkan angka\033[0m")
                 
             elif choice == '3':
                 print("\n\033[1;34mDNS SERVERS:\033[0m")
