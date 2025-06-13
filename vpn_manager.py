@@ -9,6 +9,26 @@ class VPNManager:
         self.connected_server = None
         self.rotate_active = False
 
+    def get_ip_info(self):
+        """Dapatkan informasi IP dan lokasi"""
+        try:
+            response = requests.get('http://ip-api.com/json', timeout=5)
+            data = response.json()
+            return {
+                'ip': data.get('query', 'Unknown'),
+                'country': data.get('country', 'Unknown'),
+                'city': data.get('city', 'Unknown'),
+                'isp': data.get('isp', 'Unknown')
+            }
+        except Exception as e:
+            print(f"\033[1;31m[!] Error getting IP info: {str(e)}\033[0m")
+            return {
+                'ip': 'Error',
+                'country': 'Unknown',
+                'city': 'Unknown',
+                'isp': 'Unknown'
+            }
+    
     def _load_ip_list(self):
         """Baca daftar IP dari file teks"""
         servers = {}
