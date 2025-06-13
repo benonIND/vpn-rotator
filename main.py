@@ -7,6 +7,10 @@ import sys
 import time
 import signal
 
+# Inisialisasi
+vpn = VPNManager()
+dns = DNSManager()
+
 def signal_handler(sig, frame):
     print("\n\033[1;33m[!] Received CTRL+C, cleaning up...\033[0m")
     vpn.disconnect()
@@ -22,10 +26,7 @@ def show_menu():
     print("6. Exit")
     
 def main():
-    # Inisialisasi
     show_banner()
-    vpn = VPNManager()
-    dns = DNSManager()
     
     def status_callback(ip_info):
         """Callback saat IP berhasil dirotate"""
