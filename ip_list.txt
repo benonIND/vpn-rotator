@@ -1,0 +1,6 @@
+# Format: ServerName,IP,Port,Username,Password
+Japan1,45.76.43.123,1194,vpn,vpn
+USA1,154.16.116.158,1194,vpn,vpn
+Germany1,49.12.115.24,1194,vpn,vpn
+Japan2,219.100.37.242,1194,vpn,vpn
+USA2,108.61.221.153,1194,vpn,vpn
