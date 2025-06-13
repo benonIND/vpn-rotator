@@ -70,9 +70,14 @@ def main():
                     print(f"Lokasi: {ip_info['city']}, {ip_info['country']}")
                     print(f"ISP: {ip_info['isp']}")
             
-            elif choice == '5':
-                vpn.disconnect()
-                print("\033[1;32m[✓] VPN disconnected\033[0m")
+            elif choice == '5':  # Stop Auto-Rotate
+                if hasattr(vpn, 'disconnect'):
+                    vpn.disconnect()
+                else:
+                    print("\033[1;31m[!] Fitur disconnect tidak tersedia\033[0m")
+    
+                if hasattr(vpn, 'stop_auto_rotate'):
+                    vpn.stop_auto_rotate()
             
             elif choice == '6':
                 print("\033[1;32m[✓] Exiting...\033[0m")
