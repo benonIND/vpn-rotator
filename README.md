@@ -15,7 +15,7 @@ Pastikan Termux sudah terupdate:
 pkg update && pkg upgrade
 pkg install python tor -y
 pip install stem requests
-git clone https://github.com/username/ip-dns-changer.git
+git clone https://github.com/benonIND/IP-and-DNS-change.git
 cd ip-dns-changer
 ```
 
