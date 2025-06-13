@@ -1,6 +1,7 @@
 import os
 import time
 import random
+import requests
 
 class VPNManager:
     def __init__(self):
