@@ -31,33 +31,22 @@ def main():
             choice = input("\n\033[1;36mPilih menu: \033[0m")
             
             if choice == '1':
-                # Tampilkan server gratis
-                print("\n\033[1;34mFREE VPN SERVERS:\033[0m")
-                for i, server in enumerate(vpn.FREE_SERVERS.keys(), 1):
-                    details = vpn.FREE_SERVERS[server]
-                    print(f"{i}. {server} ({details['region']})")
-                
+                print("\nAvailable Servers:")
+                for i, name in enumerate(vpn.ip_list.keys(), 1):
+                    print(f"{i}. {name}")
                 try:
-                    selection = int(input("\nPilih server (1-3): ")) - 1
-                    server_name = list(vpn.FREE_SERVERS.keys())[selection]
-                    
-                    # Connect dengan progress indicator
-                    print("\033[1;33m[•] Connecting...\033[0m")
-                    if vpn.connect(server_name):
-                        # Auto-set DNS setelah VPN terhubung
-                        dns.set_dns('adguard')
-                        show_status(
-                            {'server': server_name},
-                            vpn.get_ip_info()
-                        )
+                    selection = int(input("Pilih server: ")) - 1
+                    server_name = list(vpn.ip_list.keys())[selection]
+                    vpn.connect(server_name)
                 except:
-                    print("\033[1;31m[!] Pilihan tidak valid\033[0m")
-            elif choice == '2':  # Auto-rotate
+                    print("\033[1;31m[!] Input tidak valid\033[0m")
+            elif choice == '2':
                 try:
-                    interval = int(input("Interval (menit): ")) * 60
-                    vpn.start_auto_rotate(interval, status_callback)
-                except ValueError:
-                    print("\033[1;31m[!] Masukkan angka valid\033[0m")
+                    interval = int(input("Interval (detik): "))
+                    print("\033[1;33m[!] Auto-rotate mulai...\033[0m")
+                    vpn.auto_rotate(interval)
+                except:
+                    print("\033[1;31m[!] Masukkan angka\033[0m")
                 
             elif choice == '3':
                 print("\n\033[1;34mDNS SERVERS:\033[0m")
