@@ -13,3 +13,12 @@ Alat untuk mengubah IP address secara otomatis via Tor dan menerapkan DNS anti-i
 Pastikan Termux sudah terupdate:
 ```bash
 pkg update && pkg upgrade
+pkg install python tor -y
+pip install stem requests
+git clone https://github.com/username/ip-dns-changer.git
+cd ip-dns-changer
+
+### jalankan tor di sessions yang berbeda
+tor ( enter )
+kembali ke sessions pertama jalankan
+python main.py
