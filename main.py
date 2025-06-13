@@ -101,5 +101,5 @@ if __name__ == "__main__":
         print("\033[1;31m[!] OpenVPN belum terinstall!")
         print("Jalankan: pkg install openvpn -y\033[0m")
         sys.exit(1)
-    
-    main()
+    else :
+        main()
