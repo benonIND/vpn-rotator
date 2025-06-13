@@ -10,6 +10,8 @@ import signal
 # Inisialisasi
 vpn = VPNManager()
 dns = DNSManager()
+gps = GPSSpoofer()
+updater = Updater()
 
 def signal_handler(sig, frame):
     print("\n\033[1;33m[!] Received CTRL+C, cleaning up...\033[0m")
@@ -23,7 +25,9 @@ def show_menu():
     print("3. Change DNS Server")
     print("4. Check Status")
     print("5. Stop Auto-Rotate")
-    print("6. Exit")
+    print("6. Fake GPS")
+    print("7. Auto Update")
+    print("8. Exit")
     
 def main():
     show_banner()
@@ -87,8 +91,16 @@ def main():
     
                 if hasattr(vpn, 'stop_auto_rotate'):
                     vpn.stop_auto_rotate()
+
+            elif choice == '6':  # Fake GPS
+                lat, lon = gps.random_location()
+                gps.set_location(lat, lon)
+
+            elif choice == '7':  # Update Script
+                if updater.check_update():
+                    updater.self_update()
             
-            elif choice == '6':
+            elif choice == '8':
                 print("\033[1;32m[✓] Exiting...\033[0m")
                 vpn.disconnect()
                 sys.exit(0)
