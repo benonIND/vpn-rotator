@@ -2,6 +2,7 @@
 from banner import show_banner, show_status
 from vpn_manager import VPNManager
 from dns_manager import DNSManager
+import os
 import sys
 import time
 
