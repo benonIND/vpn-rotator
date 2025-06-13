@@ -20,6 +20,6 @@ cd ip-dns-changer
 ```
 
 ### jalankan tor di sessions yang berbeda
-- tor ( enter )
+- tor
 - kembali ke sessions pertama jalankan
 python main.py
