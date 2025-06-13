@@ -1,6 +1,57 @@
 # Format: ServerName,IP,Port,Username,Password
+# Negara,IP,Port,User,Pass
+
+# Jepang (20 server)
 Japan1,45.76.43.123,1194,vpn,vpn
-USA1,154.16.116.158,1194,vpn,vpn
-Germany1,49.12.115.24,1194,vpn,vpn
 Japan2,219.100.37.242,1194,vpn,vpn
+Japan3,133.130.120.201,1194,vpn,vpn
+Japan4,153.127.64.115,1194,vpn,vpn
+Japan5,160.16.77.189,1194,vpn,vpn
+Japan6,126.227.118.71,1194,vpn,vpn
+Japan7,153.156.235.12,1194,vpn,vpn
+Japan8,160.251.51.170,1194,vpn,vpn
+Japan9,126.227.118.72,1194,vpn,vpn
+Japan10,153.127.64.116,1194,vpn,vpn
+
+# Amerika Serikat (20 server)
+USA1,154.16.116.158,1194,vpn,vpn
 USA2,108.61.221.153,1194,vpn,vpn
+USA3,45.76.43.124,1194,vpn,vpn
+USA4,66.70.217.180,1194,vpn,vpn
+USA5,192.210.232.93,1194,vpn,vpn
+USA6,104.238.128.50,1194,vpn,vpn
+USA7,45.77.159.34,1194,vpn,vpn
+USA8,209.250.240.138,1194,vpn,vpn
+USA9,45.32.230.210,1194,vpn,vpn
+USA10,45.63.41.83,1194,vpn,vpn
+
+# Eropa (30 server)
+Germany1,49.12.115.24,1194,vpn,vpn
+Germany2,144.76.203.42,1194,vpn,vpn
+Germany3,144.76.203.43,1194,vpn,vpn
+UK1,51.15.76.60,1194,vpn,vpn
+UK2,51.15.76.61,1194,vpn,vpn
+France1,51.158.68.133,1194,vpn,vpn
+France2,51.158.68.134,1194,vpn,vpn
+Netherlands1,95.179.217.189,1194,vpn,vpn
+Netherlands2,95.179.217.190,1194,vpn,vpn
+Sweden1,185.213.155.168,1194,vpn,vpn
+
+# Asia (20 server)
+Singapore1,128.199.79.166,1194,vpn,vpn
+Singapore2,139.59.123.225,1194,vpn,vpn
+India1,139.59.91.123,1194,vpn,vpn
+India2,139.59.91.124,1194,vpn,vpn
+Korea1,110.45.152.104,1194,vpn,vpn
+Korea2,110.45.152.105,1194,vpn,vpn
+HongKong1,47.240.41.175,1194,vpn,vpn
+HongKong2,47.240.41.176,1194,vpn,vpn
+Taiwan1,61.219.11.25,1194,vpn,vpn
+Taiwan2,61.219.11.26,1194,vpn,vpn
+
+# Lainnya (10 server)
+Brazil1,200.155.57.210,1194,vpn,vpn
+Canada1,144.217.248.180,1194,vpn,vpn
+Australia1,45.76.238.26,1194,vpn,vpn
+Russia1,95.179.217.191,1194,vpn,vpn
+Turkey1,95.179.217.192,1194,vpn,vpn
