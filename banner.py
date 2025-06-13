@@ -11,6 +11,8 @@ def show_banner():
   \033[1;33m• Auto-IP Rotation
   \033[1;35m• Multi-Server Support
   \033[1;34m• DNS Protection
+  \033[1;36m• Fake Gps
+  \033[1;37m• Auto Update
   \033[1;31m• No Root Required
   \033[0m""")
 
