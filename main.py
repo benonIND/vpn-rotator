@@ -1,47 +1,50 @@
 #!/data/data/com.termux/files/usr/bin/python3
-
-import sys
-import os
-import time
-from banner import show_banner, show_status
-from ip_changer import IPChanger
+from banner import show_banner
 from dns_adblock import DNSManager
+from vpn_changer import VPNManager  # Import modul baru
 
-def setup_environment():
-    os.system('clear')
-    if not os.path.exists('/data/data/com.termux/files/usr/bin/tor'):
-        print("\033[1;31m[!] Tor belum terinstall! Jalankan:")
-        print("pkg install tor -y")
-        print("pip install stem requests\033[0m")
-        sys.exit(1)
+def main_menu():
+    print("\n\033[1;33mMAIN MENU:\033[0m")
+    print("1. Change VPN Location")
+    print("2. DNS Adblock")
+    print("3. Check Current IP")
+    print("4. Exit")
+    return input("\nSelect option: ")
 
 def main():
-    setup_environment()
     show_banner()
-    
-    # Init modules
-    ip_changer = IPChanger()
-    dns_manager = DNSManager()
-    
-    try:
-        # Set default DNS
-        dns_manager.set_dns('adguard')
-        
-        # Start IP rotation
-        ip_changer.start(interval=10)
-        
-        # Show initial status
-        initial_ip = ip_changer.get_ip_info()
-        show_status(initial_ip['ip'], initial_ip['country'], dns_manager.current_dns)
-        
-        # Keep alive
-        input("\nTekan Enter untuk berhenti...\n")
-        
-    except KeyboardInterrupt:
-        pass
-    finally:
-        ip_changer.stop()
-        print("\n\033[1;31m[!] Service dihentikan\033[0m")
+    dns = DNSManager()
+    vpn = VPNManager()  # Inisialisasi VPN Manager
+
+    while True:
+        choice = main_menu()
+
+        if choice == '1':  # VPN Changer
+            print("\nAvailable Locations:")
+            for i, loc in enumerate(VPNManager.VPN_SERVERS.keys(), 1):
+                print(f"{i}. {loc}")
+            
+            try:
+                loc_choice = int(input("Select location (1-3): ")) - 1
+                location = list(VPNManager.VPN_SERVERS.keys())[loc_choice]
+                if vpn.connect(location):
+                    ip_info = vpn.get_ip_info()
+                    print(f"\033[1;32m[✓] Connected to {location} | IP: {ip_info.get('query', '?')}\033[0m")
+            except:
+                print("\033[1;31m[!] Invalid input\033[0m")
+
+        elif choice == '2':  # DNS Adblock
+            dns.set_dns('adguard')
+
+        elif choice == '3':  # Check IP
+            ip_info = vpn.get_ip_info()
+            print(f"\n\033[1;36mCurrent IP: {ip_info.get('query', '?')}")
+            print(f"Location: {ip_info.get('country', '?')}\033[0m")
+
+        elif choice == '4':  # Exit
+            vpn.disconnect()
+            dns.set_dns('default')
+            break
 
 if __name__ == "__main__":
     main()
