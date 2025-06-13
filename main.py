@@ -3,6 +3,7 @@ from banner import show_banner, show_status
 from vpn_manager import VPNManager
 from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
+from updater import Updater
 import os
 import sys
 import time
