@@ -19,7 +19,7 @@ class IPChanger:
         try:
             controller = connect(
                 control_port=9051,
-                auth_method="COOKIE",  # atau "PASSWORD"
+                # auth_method="COOKIE",  # atau "PASSWORD"
                 password="wongedan96"
             )
             if controller:
