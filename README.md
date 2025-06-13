@@ -76,7 +76,7 @@ Germany_VPN,49.12.115.24,1194,vpn,vpn
 Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 
 ### 🎨 Tampilan Banner di Termux
-![Banner Preview](https://i.imgur.com/example.png)  
+![Banner Preview](https://d.top4top.io/p_3451xke020.jpg)  
 *(Gunakan terminal dengan tema biru untuk tampilan optimal)*
 
 ### 🔧 Struktur Proyek
