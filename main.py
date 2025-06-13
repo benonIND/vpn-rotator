@@ -52,8 +52,14 @@ def main():
                         )
                 except:
                     print("\033[1;31m[!] Pilihan tidak valid\033[0m")
-            
-            elif choice == '2':
+            elif choice == '2':  # Auto-rotate
+            try:
+                interval = int(input("Interval (menit): ")) * 60
+                vpn.start_auto_rotate(interval, status_callback)
+            except ValueError:
+                print("\033[1;31m[!] Masukkan angka valid\033[0m")
+                
+            elif choice == '3':
                 print("\n\033[1;34mDNS SERVERS:\033[0m")
                 for i, server in enumerate(dns.DNS_SERVERS.keys(), 1):
                     print(f"{i}. {server} ({dns.DNS_SERVERS[server]})")
@@ -64,17 +70,17 @@ def main():
                 except:
                     print("\033[1;31m[!] Pilihan tidak valid\033[0m")
             
-            elif choice == '3':
+            elif choice == '4':
                 show_status(
                     {'server': vpn.connected_server},
                     vpn.get_ip_info()
                 )
             
-            elif choice == '4':
+            elif choice == '5':
                 vpn.disconnect()
                 print("\033[1;32m[✓] VPN disconnected\033[0m")
             
-            elif choice == '5':
+            elif choice == '6':
                 print("\033[1;32m[✓] Exiting...\033[0m")
                 vpn.disconnect()
                 sys.exit(0)
