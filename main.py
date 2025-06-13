@@ -105,8 +105,8 @@ def main():
     
                 if gps_choice == '1':
                     lat, lon = gps.random_location()
-                        if gps.set_location(lat, lon):
-                            print(f"\033[1;32m[✓] Lokasi acak dipilih: {lat}, {lon}\033[0m")
+                    if gps.set_location(lat, lon):
+                        print(f"\033[1;32m[✓] Lokasi acak dipilih: {lat}, {lon}\033[0m")
     
                 elif gps_choice == '2':
                     try:
