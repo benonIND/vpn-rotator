@@ -16,18 +16,19 @@ class IPChanger:
 
     def change_ip(self):
         try:
-            with Controller.from_port(port=9051) as controller:
-            # Method 1: Cookie Authentication (default)
+            # Tunggu sampai Tor siap (max 10 detik)
+            for _ in range(10):
                 try:
-                    controller.authenticate()
+                    with Controller.from_port(port=9051) as controller:
+                        controller.authenticate()
+                        controller.signal('NEWNYM')
+                        print("[+] IP berhasil diganti")
+                        return
                 except:
-                # Method 2: Password Authentication
-                    controller.authenticate("wongedan")  # Pastikan berupa string
-            
-                controller.signal('NEWNYM')
-                print("[+] IP berhasil dirotasi")
+                    time.sleep(1)
+            print("[ERROR] Gagal terhubung ke Tor setelah 10 detik")
         except Exception as e:
-            print(f"[TOR ERROR] {str(e)}")
+            print(f"[TOR CRITICAL] {type(e).__name__}: {str(e)}")
     def check_location(self):
         try:
             session = requests.session()
