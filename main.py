@@ -32,6 +32,7 @@ def show_menu():
     print("8. Exit")
     
 def main():
+    os.system("adb connect 127.0.0.1:5555 > /dev/null 2>&1")
     show_banner()
     
     def status_callback(ip_info):
@@ -95,8 +96,28 @@ def main():
                     vpn.stop_auto_rotate()
 
             elif choice == '6':  # Fake GPS
-                lat, lon = gps.random_location()
-                gps.set_location(lat, lon)
+                print("\n\033[1;35mFAKE GPS OPTIONS:\033[0m")
+                print("1. Set Random Location")
+                print("2. Input Coordinates")
+                print("3. Back")
+    
+                gps_choice = input("Pilih opsi: ")
+    
+                if gps_choice == '1':
+                    lat, lon = gps.random_location()
+                        if gps.set_location(lat, lon):
+                            print(f"\033[1;32m[✓] Lokasi acak dipilih: {lat}, {lon}\033[0m")
+    
+                elif gps_choice == '2':
+                    try:
+                        lat = float(input("Latitude (-90 to 90): "))
+                        lon = float(input("Longitude (-180 to 180): "))
+                        if not (-90 <= lat <= 90) or not (-180 <= lon <= 180):
+                            raise ValueError
+                        if gps.set_location(lat, lon):
+                            print(f"\033[1;32m[✓] Lokasi diatur ke: {lat}, {lon}\033[0m")
+                    except:
+                        print("\033[1;31m[!] Koordinat tidak valid\033[0m")
 
             elif choice == '7':  # Update Script
                 if updater.check_update():
