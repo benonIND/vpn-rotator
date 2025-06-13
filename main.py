@@ -5,22 +5,29 @@ from dns_manager import DNSManager
 import sys
 import time
 
+def show_menu():
+    print("\n\033[1;33mMAIN MENU:\033[0m")
+    print("1. Connect VPN Manual")
+    print("2. Auto-Rotate VPN (Ganti IP Otomatis)")
+    print("3. Change DNS Server")
+    print("4. Check Status")
+    print("5. Stop Auto-Rotate")
+    print("6. Exit")
+    
 def main():
     # Inisialisasi
     show_banner()
     vpn = VPNManager()
     dns = DNSManager()
     
+    def status_callback(ip_info):
+        """Callback saat IP berhasil dirotate"""
+        print(f"\n\033[1;36m[•] IP Baru: {ip_info['ip']}")
+        print(f"Lokasi: {ip_info['country']}\033[0m")
     try:
         while True:
-            print("\n\033[1;33mMAIN MENU:\033[0m")
-            print("1. Connect to Free VPN")
-            print("2. Change DNS Server")
-            print("3. Check Current Status")
-            print("4. Disconnect VPN")
-            print("5. Exit")
-            
-            choice = input("\n\033[1;36mSelect option: \033[0m")
+            show_menu()
+            choice = input("\n\033[1;36mPilih menu: \033[0m")
             
             if choice == '1':
                 # Tampilkan server gratis
