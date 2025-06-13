@@ -53,11 +53,11 @@ def main():
                 except:
                     print("\033[1;31m[!] Pilihan tidak valid\033[0m")
             elif choice == '2':  # Auto-rotate
-            try:
-                interval = int(input("Interval (menit): ")) * 60
-                vpn.start_auto_rotate(interval, status_callback)
-            except ValueError:
-                print("\033[1;31m[!] Masukkan angka valid\033[0m")
+                try:
+                    interval = int(input("Interval (menit): ")) * 60
+                    vpn.start_auto_rotate(interval, status_callback)
+                except ValueError:
+                    print("\033[1;31m[!] Masukkan angka valid\033[0m")
                 
             elif choice == '3':
                 print("\n\033[1;34mDNS SERVERS:\033[0m")
