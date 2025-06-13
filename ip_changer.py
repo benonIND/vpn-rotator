@@ -14,7 +14,7 @@ class IPChanger:
             print("Jalankan: pkg install tor && pip install stem\033[0m")
             exit(1)
 
-    def change_ip():
+    def change_ip(self):
         try:
             with Controller.from_port(port=9051) as controller:
             # Method 1: Cookie Authentication (default)
