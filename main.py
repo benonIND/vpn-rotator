@@ -139,10 +139,19 @@ def main():
         sys.exit(0)
 
 if __name__ == "__main__":
-    # Persiapan environment
-    if not os.path.exists('/data/data/com.termux/files/usr/bin/openvpn'):
-        print("\033[1;31m[!] OpenVPN belum terinstall!")
-        print("Jalankan: pkg install openvpn -y\033[0m")
-        sys.exit(1)
-    else :
-        main()
+    try :
+        # Persiapan environment
+        if not os.path.exists('/data/data/com.termux/files/usr/bin/openvpn'):
+            print("\033[1;31m[!] OpenVPN belum terinstall!")
+            print("Jalankan: pkg install openvpn -y\033[0m")
+            sys.exit(1)
+        # Cek ADB terlebih dahulu
+        if os.system("adb devices > /dev/null 2>&1") != 0:
+            print("\033[1;33m[!] Jalankan ini terlebih dahulu:")
+            print("adb tcpip 5555")
+            print("adb connect 127.0.0.1:5555\033[0m")
+        else :
+            main()
+    except KeyboardInterrupt:
+        print("\n\033[1;33m[!] Program dihentikan\033[0m")
+        sys.exit(0)
