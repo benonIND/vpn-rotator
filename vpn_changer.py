@@ -2,6 +2,7 @@ import os
 import requests
 import random
 import time
+import threading
 from urllib.parse import urlparse
 
 class VPNManager:
@@ -22,7 +23,32 @@ class VPNManager:
             "type": "openvpn"
         }
     }
+    def start_auto_rotate(self, interval=300, callback=None):
+        """Mulai auto-rotate IP setiap X detik"""
+        self.stop_auto_rotate()  # Hentikan thread sebelumnya
+        
+        self._rotate_active = True
+        def rotation_loop():
+            while getattr(self, '_rotate_active', False):
+                try:
+                    new_server = random.choice(list(self.FREE_SERVERS.keys()))
+                    if self.connect(new_server) and callback:
+                        callback(self.get_ip_info())
+                except Exception as e:
+                    print(f"\033[1;31m[!] Rotate error: {e}\033[0m")
+                time.sleep(interval)
+        
+        self._rotate_thread = threading.Thread(target=rotation_loop)
+        self._rotate_thread.daemon = True
+        self._rotate_thread.start()
+        print(f"\033[1;32m[✓] Auto-rotate aktif setiap {interval//60} menit\033[0m")
 
+    def stop_auto_rotate(self):
+        """Hentikan auto-rotate"""
+        if hasattr(self, '_rotate_thread'):
+            self._rotate_active = False
+            self._rotate_thread.join()
+            print("\033[1;33m[!] Auto-rotate dihentikan\033[0m")
     def __init__(self):
         self.current_vpn = None
         self.vpn_process = None
