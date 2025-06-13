@@ -6,6 +6,8 @@ class VPNManager:
     def __init__(self):
         self.ip_list = self._load_ip_list()
         self.current_connection = None
+        self.connected_server = None
+        self.rotate_active = False
 
     def _load_ip_list(self):
         """Baca daftar IP dari file teks"""
@@ -59,6 +61,7 @@ persist-tun
         time.sleep(3)
         print(f"\033[1;32m[✓] Connected to {server_name}\033[0m")
         self.current_connection = server_name
+        self.connected_server = server_name
         return True
 
     def auto_rotate(self, interval=300):
