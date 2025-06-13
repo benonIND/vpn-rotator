@@ -6,7 +6,7 @@ from urllib.parse import urlparse
 
 class VPNManager:
     # Daftar server VPN gratis (OpenVPN config)
-    FREE_VPN_SERVERS = {
+    VPN_SERVERS = {
         "ProtonVPN-Free": {
             "config_url": "https://account.protonvpn.com/api/vpn/logicals/Free",
             "type": "openvpn"
