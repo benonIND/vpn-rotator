@@ -3,6 +3,7 @@ import time
 import requests
 from stem import Signal
 from stem.control import Controller
+from stem.connection import connect
 
 class IPChanger:
     def __init__(self):
@@ -15,10 +16,16 @@ class IPChanger:
             exit(1)
 
     def change_ip(self):
-        with Controller.from_port(port=9051) as controller:
-            controller.authenticate()
-            controller.signal(Signal.NEWNYM)
-        self.check_location()
+        try:
+            controller = connect(
+                control_port=9051,
+                auth_method="COOKIE",  # atau "PASSWORD"
+                password="wongedan96"
+            )
+            if controller:
+                controller.signal(Signal.NEWNYM)
+        except Exception as e:
+            print(f"[TOR ERROR] {str(e)}")
 
     def check_location(self):
         try:
