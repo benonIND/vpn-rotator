@@ -70,9 +70,7 @@ client
 dev tun
 proto udp
 remote {server['ip']} {server['port']}
-auth-user-pass
-username {server['username']}
-password {server['password']}
+auth-user-pass vpn_auth.txt
 resolv-retry infinite
 nobind
 persist-key
