@@ -94,7 +94,7 @@ class VPNManager:
         except:
             return False
 
-    def get_current_ip(self):
+    def get_ip_info(self):
         """Get current IP address"""
         try:
             return requests.get('https://api.ipify.org', timeout=5).text
