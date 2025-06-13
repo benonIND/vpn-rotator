@@ -59,11 +59,13 @@ def main():
                 except:
                     print("\033[1;31m[!] Pilihan tidak valid\033[0m")
             
-            elif choice == '4':
-                show_status(
-                    {'server': vpn.connected_server},
-                    vpn.get_ip_info()
-                )
+            elif choice == '4':  # Check Status
+                ip_info = vpn.get_ip_info()
+                print(f"\n\033[1;36mCURRENT STATUS:\033[0m")
+                print(f"VPN Server: {vpn.connected_server or 'Not Connected'}")
+                print(f"IP Address: {ip_info.get('ip', 'Unknown')}")
+                print(f"Location: {ip_info.get('country', 'Unknown')}")
+                print(f"ISP: {ip_info.get('isp', 'Unknown')}")
             
             elif choice == '5':
                 vpn.disconnect()
