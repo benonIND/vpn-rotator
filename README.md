@@ -11,8 +11,10 @@ VPN Manager dengan fitur auto-rotate IP dan DNS protection untuk Termux
 
 ## 🚀 Fitur Utama
 - Auto ganti IP setiap X menit
-- Support 100+ server via file config
+- Support 100+ server via file config and list txt
 - DNS adblock otomatis
+- Cek status info
+- Auto update
 - Tanpa perlu root
 
 ## 📦 Instalasi
