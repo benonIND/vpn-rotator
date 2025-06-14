@@ -152,6 +152,7 @@ if __name__ == "__main__":
             print("adb tcpip 5555")
             print("adb connect 127.0.0.1:5555\033[0m")
         else :
+            os.systen("clear")
             main()
     except KeyboardInterrupt:
         print("\n\033[1;33m[!] Program dihentikan\033[0m")
