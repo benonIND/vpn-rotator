@@ -90,7 +90,7 @@ Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 
 ### 🔧 Struktur Proyek
 ```bash
-📂 vpn-rotator
+📂 vpn-rotator/
 ├── 📄 .gitignore
 ├── 📄 LICENSE
 ├── 📄 README.md
