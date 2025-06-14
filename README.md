@@ -1,3 +1,10 @@
+![GitHub Author](https://img.shields.io/badge/Author-yorima-blue?logo=github&style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white&style=for-the-badge)
+![GitHub Version](https://img.shields.io/badge/Version-1.0.0-blueviolet?style=for-the-badge)
+
+> [!IMPORTANT]
+> jika terjadi error padahal sudah mengikuti panduan harap teliti errornya atau minta bantuan AI untuk analisis error
+
 # Termux VPN Rotator Pro
 
 VPN Manager dengan fitur auto-rotate IP dan DNS protection untuk Termux
