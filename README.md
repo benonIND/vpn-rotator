@@ -89,13 +89,19 @@ Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 *(Gunakan terminal dengan tema biru untuk tampilan optimal)*
 
 ### 🔧 Struktur Proyek
-```
-📂 vpn-rotator/
-├── 📄 main.py
-├── 📄 vpn_manager.py
-├── 📄 banner.py
-├── 📄 ip_list.txt
+```bash
+📂 vpn-rotator
+├── 📄 .gitignore
+├── 📄 LICENSE
 ├── 📄 README.md
-└── 📂 logs/
-     └── vpn.log
+├── 📄 banner.py
+├── 📄 dns_manager.py
+├── 📄 gps_spoofer.py
+├── 📄 ip_changer.py
+├── 📄 ip_list.txt
+├── 📄 main.py
+├── 📄 requirements.txt
+├── 📄 updater.py
+├── 📄 vpn_auth.txt
+└── 📄 vpn_manager.py
 ```
