@@ -34,7 +34,7 @@ def show_menu():
 def main():
     os.system("adb connect 127.0.0.1:5555 > /dev/null 2>&1")
     show_banner()
-    show_status()
+    show_status(vpn.get_ip_info(), vpn.get_ip_info()['city'])
     
     def status_callback(ip_info):
         """Callback saat IP berhasil dirotate"""
