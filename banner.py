@@ -19,7 +19,7 @@ def show_banner():
 def show_status(ip_info, server_name):
     print(f"""\033[1;35m
   ╔══════════════════════════╗
-  ║       VPN STATUS        ║
+  ║       VPN STATUS         ║
   ╠══════════════════════════╣
   ║ Server: {server_name or 'Not Connected':<16} ║
   ║ IP: {ip_info.get('ip','Unknown'):<21}║
