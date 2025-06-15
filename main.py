@@ -1,4 +1,13 @@
 #!/data/data/com.termux/files/usr/bin/python3
+
+"""
+Inovasi tumbuh dari logika 
+yang sederhana, 
+dieksekusi oleh 
+baris kode yang jujur 
+
+— yorima
+"""
 from banner import show_banner, show_status
 from vpn_manager import VPNManager
 from dns_manager import DNSManager
