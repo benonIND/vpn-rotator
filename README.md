@@ -93,9 +93,9 @@ Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 ### 🔧 Struktur Proyek
 ```bash
 📂 vpn-rotator/
-├── updater/
-│   ├── __init__.py
-│   └── git_updater.py
+├── 📂 updater/
+│    ├── __init__.py
+│    └── git_updater.py
 │
 ├── .gitignore
 ├── LICENSE
