@@ -93,17 +93,20 @@ Lapor issue di: [GitHub Issues](https://github.com/benonIND/vpn-rotator/issues)
 ### 🔧 Struktur Proyek
 ```bash
 📂 vpn-rotator/
-├── 📄 .gitignore
-├── 📄 LICENSE
-├── 📄 README.md
-├── 📄 banner.py
-├── 📄 dns_manager.py
-├── 📄 gps_spoofer.py
-├── 📄 ip_changer.py
-├── 📄 ip_list.txt
-├── 📄 main.py
-├── 📄 requirements.txt
-├── 📄 updater.py
-├── 📄 vpn_auth.txt
-└── 📄 vpn_manager.py
+├── updater/
+│   ├── __init__.py
+│   └── git_updater.py
+│
+├── .gitignore
+├── LICENSE
+├── README.md
+├── banner.py
+├── dns_manager.py
+├── gps_spoofer.py
+├── ip_changer.py
+├── ip_list.txt
+├── main.py
+├── requirements.txt
+├── vpn_auth.txt
+└── vpn_manager.py
 ```
