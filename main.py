@@ -3,7 +3,7 @@ from banner import show_banner, show_status
 from vpn_manager import VPNManager
 from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
-from updater import Updater
+from updater.git_updater import check_and_update_repo
 import os
 import sys
 import time
@@ -121,8 +121,7 @@ def main():
                         print("\033[1;31m[!] Koordinat tidak valid\033[0m")
 
             elif choice == '7':  # Update Script
-                if updater.check_update():
-                    updater.self_update()
+                check_and_update_repo()
             
             elif choice == '8':
                 print("\033[1;32m[✓] Exiting...\033[0m")
