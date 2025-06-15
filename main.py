@@ -13,7 +13,6 @@ import signal
 vpn = VPNManager()
 dns = DNSManager()
 gps = GPSSpoofer()
-updater = Updater()
 
 def signal_handler(sig, frame):
     print("\n\033[1;33m[!] Received CTRL+C, cleaning up...\033[0m")
