@@ -13,7 +13,7 @@ from vpn_manager import VPNManager
 # from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
-from dns_manager.ad_blockdns import test_blaclist_from_file
+from dns_manager.adblock_dns import test_blaclist_from_file
 from network_check import wait_for_internet
 import os
 import sys
