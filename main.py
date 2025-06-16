@@ -14,6 +14,7 @@ from vpn_manager import VPNManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
 from dns_manager import set_adblock_dns, check_ip_dns, test_doh_adblock
+from network_check import wait_for_internet
 import os
 import sys
 import time
