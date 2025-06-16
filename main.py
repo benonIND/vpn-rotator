@@ -21,7 +21,7 @@ import signal
 
 # Inisialisasi
 vpn = VPNManager()
-dns = DNSManager()
+# dns = DNSManager()
 gps = GPSSpoofer()
 
 def signal_handler(sig, frame):
