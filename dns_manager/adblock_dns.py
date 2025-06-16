@@ -2,7 +2,7 @@ import dns.resolver
 import requests
 
 # === DNS Filtering AdGuard ===
-ADGUARD_DNS = ["76.76.2.38", "76.76.10.38"]
+ADGUARD_DNS = ["94.140.14.14", "94.140.15.15"]
 
 def set_adblock_dns():
     """Set resolver DNS ke AdGuard DNS"""
