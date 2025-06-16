@@ -1,8 +1,8 @@
 from adblock_dns import *
-from ../server.local_dns_server import start_dns_server
+from ../server.dns_server import start_dns_server
 
 def start_dns_blocker():
-    blacklist_path = "data/ads_blacklist.txt"
+    blacklist_path = "../ads_blacklist.txt"
     try:
         with open(blacklist_path) as f:
             domains = [line.strip() for line in f if line.strip()]
