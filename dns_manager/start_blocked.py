@@ -1,5 +1,5 @@
 from adblock_dns import *
-from ../server.dns_server import start_dns_server
+from ..server.dns_server import start_dns_server
 
 def start_dns_blocker():
     blacklist_path = "../ad_blacklist.txt"
