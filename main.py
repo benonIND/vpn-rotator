@@ -13,7 +13,7 @@ from vpn_manager import VPNManager
 # from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
-from dns_manager.adblock_dns import *
+from dns_manager.start_blocked import start_dns_blocker
 from network_check import wait_for_internet
 import os
 import sys
@@ -22,7 +22,6 @@ import signal
 
 # Inisialisasi
 vpn = VPNManager()
-# dns = DNSManager()
 gps = GPSSpoofer()
 
 def signal_handler(sig, frame):
@@ -77,10 +76,7 @@ def main():
                 
             elif choice == '3':
                 if wait_for_internet():
-                    results = test_blacklist_from_file("ad_blacklist.txt")
-                    total = len(results)
-                    blocked = sum(1 for v in results.values() if v)
-                    print(f"\n📊 Hasil: {blocked} dari {total} domain berhasil diblokir.")
+                    start_dns_blocker()
                 else:
                     print("❌ Program dihentikan karena koneksi internet belum tersedia.")
             elif choice == '4':  # Check Status
