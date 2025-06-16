@@ -13,6 +13,7 @@ from vpn_manager import VPNManager
 from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
+from dns_manager import set_adblock_dns, check_ip_dns
 import os
 import sys
 import time
@@ -74,16 +75,7 @@ def main():
                     print("\033[1;31m[!] Masukkan angka\033[0m")
                 
             elif choice == '3':
-                print("\n\033[1;34mDNS SERVERS:\033[0m")
-                for i, server in enumerate(dns.DNS_SERVERS.keys(), 1):
-                    print(f"{i}. {server} ({dns.DNS_SERVERS[server]})")
-                
-                try:
-                    selection = int(input("\nPilih DNS (1-4): ")) - 1
-                    dns.set_dns(list(dns.DNS_SERVERS.keys())[selection])
-                except:
-                    print("\033[1;31m[!] Pilihan tidak valid\033[0m")
-            
+                set_adblock_dns()
             elif choice == '4':  # Check Status
                 if not hasattr(vpn, 'get_ip_info'):
                     print("\033[1;31m[!] Fitur cek IP tidak tersedia\033[0m")
