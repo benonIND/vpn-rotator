@@ -13,7 +13,7 @@ from vpn_manager import VPNManager
 # from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
-from dns_manager import set_adblock_dns, check_ip_dns, test_doh_adblock
+from dns_manager.ad_blockdns import test_blaclist_from_file
 from network_check import wait_for_internet
 import os
 import sys
@@ -76,8 +76,10 @@ def main():
                     print("\033[1;31m[!] Masukkan angka\033[0m")
                 
             elif choice == '3':
-                # set_adblock_dns()
-                test_doh_adblock('ads.google.com')
+                if wait_for_internet():
+                    test_blacklist_from_file('ad_blacklist.txt')
+                else :
+                    print("❌ Program dihentikan karena tidak ada koneksi internet.")
             elif choice == '4':  # Check Status
                 if not hasattr(vpn, 'get_ip_info'):
                     print("\033[1;31m[!] Fitur cek IP tidak tersedia\033[0m")
