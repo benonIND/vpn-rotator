@@ -10,7 +10,7 @@ baris kode yang jujur
 """
 from banner import show_banner, show_status
 from vpn_manager import VPNManager
-from dns_manager import DNSManager
+# from dns_manager import DNSManager
 from gps_spoofer import GPSSpoofer
 from updater.git_updater import check_and_update_repo
 from dns_manager import set_adblock_dns, check_ip_dns
