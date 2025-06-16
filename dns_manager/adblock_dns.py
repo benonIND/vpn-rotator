@@ -1,60 +1,40 @@
-import dns.resolver
-import requests
 import httpx
 
-def test_doh_adblock(domain="ads.google.com"):
-    url = f"https://dns.google/resolve?name={domain}&type=A"
+ADBLOCK_DOH_SERVERS = [
+    "https://dns.google/resolve",        # Google DNS DoH
+    "https://cloudflare-dns.com/dns-query",  # Cloudflare DNS DoH
+]
+
+def test_block(domain):
+    blocked = False
+    print(f"\n[*] Mengecek domain: {domain}")
+
+    for doh_url in ADBLOCK_DOH_SERVERS:
+        try:
+            params = {"name": domain, "type": "A"}
+            headers = {"Accept": "application/dns-json"}
+
+            resp = httpx.get(doh_url, params=params, headers=headers, timeout=5)
+            data = resp.json()
+
+            if "Answer" in data:
+                print(f"[✗] {domain} TIDAK diblokir (IP: {', '.join([a['data'] for a in data['Answer']])})")
+            elif data.get("Status") == 3:
+                print(f"[✓] {domain} DIBLOKIR (NXDOMAIN) oleh DoH: {doh_url}")
+                blocked = True
+            else:
+                print(f"[?] Hasil tak pasti dari {doh_url}: {data}")
+        except Exception as e:
+            print(f"[!] Gagal DoH {doh_url}: {e}")
+
+    return blocked
+
+def test_blacklist_from_file(file_path="ad_blacklist.txt"):
     try:
-        resp = httpx.get(url, timeout=5).json()
-        if "Answer" in resp:
-            print(f"[!] DoH aktif tapi {domain} masih resolve ke: {[ans['data'] for ans in resp['Answer']]}")
-            return False
-        elif resp.get("Status") == 3:
-            print(f"[✓] DoH: {domain} diblokir (NXDOMAIN).")
-            return True
-        else:
-            print("[?] DoH unknown result:", resp)
-            return False
-    except Exception as e:
-        print("[!] Gagal DoH DNS:", e)
-        return False
-
-# === DNS Filtering AdGuard ===
-ADGUARD_DNS = ["94.140.14.14", "94.140.15.15"]
-
-def set_adblock_dns():
-    """Set resolver DNS ke AdGuard DNS"""
-    resolver = dns.resolver.Resolver(configure=False)
-    resolver.nameservers = ADGUARD_DNS
-    resolver.timeout = 10
-    resolver.lifetime = 10
-    dns.resolver.default_resolver = resolver
-    print("[+] DNS resolver telah diganti ke AdGuard:", ADGUARD_DNS)
-
-def restore_default_resolver():
-    """Kembalikan ke DNS resolver default sistem"""
-    resolver = dns.resolver.Resolver()
-    dns.resolver.default_resolver = resolver
-    print("[*] DNS resolver dikembalikan ke default sistem.")
-
-def test_dns_resolver():
-    """Cek apakah ads.google.com diblokir oleh DNS saat ini"""
-    try:
-        answer = dns.resolver.resolve("ads.google.com")
-        print("[!] DNS aktif, tetapi ads.google.com resolve ke:", [rdata.address for rdata in answer])
-        return False
-    except dns.resolver.NXDOMAIN:
-        print("[✓] DNS bekerja: ads.google.com diblokir.")
-        return True
-    except Exception as e:
-        print("[!] Error saat cek DNS:", e)
-        return False
-
-def check_ip_dns():
-    """Cek IP publik dan status pemblokiran DNS"""
-    try:
-        ip = requests.get("https://api.ipify.org").text
-        print("[✓] IP Publik Anda:", ip)
-        test_dns_resolver()
-    except Exception as e:
-        print("[!] Gagal cek IP publik:", e)
+        with open(file_path, "r") as f:
+            domains = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+        print(f"\n[•] Mulai cek {len(domains)} domain iklan dari {file_path}...\n")
+        for domain in domains:
+            test_block(domain)
+    except FileNotFoundError:
+        print(f"[!] File '{file_path}' tidak ditemukan.")
