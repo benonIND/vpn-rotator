@@ -1,41 +1,24 @@
 import httpx
 
-ADGUARD_DOH_JSON = "https://dns.adguard-dns.com/resolve"
+ADGUARD_DOH = "https://dns.adguard-dns.com/resolve"
 
-def test_block(domain):
-    print(f"[*] Mengecek: {domain}")
+def check_domain_status(domain: str) -> bool:
+    """
+    Mengembalikan True jika domain diblokir oleh AdGuard (status = 3 atau tidak ada jawaban),
+    dan False jika tidak diblokir.
+    """
     try:
-        resp = httpx.get(
-            ADGUARD_DOH_JSON,
+        response = httpx.get(
+            ADGUARD_DOH,
             params={"name": domain, "type": "A"},
-            headers={"Accept": "application/dns-json"},
+            headers={"accept": "application/dns-json"},
             timeout=5
         )
-        data = resp.json()
-
-        if data.get("Status") == 3:
-            print(f"[✓] {domain} DIBLOKIR (NXDOMAIN)")
+        json_data = response.json()
+        status = json_data.get("Status", -1)
+        if status == 3 or "Answer" not in json_data:
             return True
-        elif "Answer" in data:
-            ips = ', '.join([a['data'] for a in data['Answer']])
-            print(f"[✗] {domain} TIDAK diblokir (resolves to {ips})")
-            return False
-        else:
-            print("[?] Respon tidak jelas:", data)
-            return False
-    except Exception as e:
-        print("[!] Gagal melakukan DoH:", e)
         return False
-
-def test_blacklist_from_file(file_path="ad_blacklist.txt"):
-    try:
-        with open(file_path, "r") as f:
-            domains = [line.strip() for line in f if line.strip() and not line.startswith("#")]
-        print(f"\n[•] Mulai cek {len(domains)} domain dari {file_path}...\n")
-        results = {}
-        for domain in domains:
-            results[domain] = test_block(domain)
-        return results
-    except FileNotFoundError:
-        print(f"[!] File '{file_path}' tidak ditemukan.")
-        return {}
+    except Exception as e:
+        print(f"[!] Error checking {domain}: {e}")
+        return False
