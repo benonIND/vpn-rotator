@@ -77,9 +77,12 @@ def main():
                 
             elif choice == '3':
                 if wait_for_internet():
-                    test_blacklist_from_file('ad_blacklist.txt')
-                else :
-                    print("❌ Program dihentikan karena tidak ada koneksi internet.")
+                    results = test_blacklist_from_file("ad_blacklist.txt")
+                    total = len(results)
+                    blocked = sum(1 for v in results.values() if v)
+                    print(f"\n📊 Hasil: {blocked} dari {total} domain berhasil diblokir.")
+                else:
+                    print("❌ Program dihentikan karena koneksi internet belum tersedia.")
             elif choice == '4':  # Check Status
                 if not hasattr(vpn, 'get_ip_info'):
                     print("\033[1;31m[!] Fitur cek IP tidak tersedia\033[0m")
