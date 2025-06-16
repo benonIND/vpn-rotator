@@ -36,7 +36,7 @@ def show_menu():
     print("2. Auto-Rotate VPN (Ganti IP Otomatis)")
     print("3. DNS AdBlock")
     print("4. Check Status")
-    print("5. Stop Auto-Rotate")
+    print("5. Stop VPN connection")
     print("6. Fake GPS")
     print("7. Auto Update")
     print("8. Exit")
