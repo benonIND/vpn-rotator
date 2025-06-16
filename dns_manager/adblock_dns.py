@@ -1,9 +1,6 @@
 import httpx
 
-ADBLOCK_DOH_SERVERS = [
-    "https://dns.google/resolve",        # Google DNS DoH
-    "https://cloudflare-dns.com/dns-query",  # Cloudflare DNS DoH
-]
+ADBLOCK_DOH_SERVERS = ["https://dns.adguard.com/dns-query"]
 
 def test_block(domain):
     blocked = False
