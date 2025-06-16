@@ -1,5 +1,23 @@
 import dns.resolver
 import requests
+import httpx
+
+def test_doh_adblock(domain="ads.google.com"):
+    url = f"https://dns.google/resolve?name={domain}&type=A"
+    try:
+        resp = httpx.get(url, timeout=5).json()
+        if "Answer" in resp:
+            print(f"[!] DoH aktif tapi {domain} masih resolve ke: {[ans['data'] for ans in resp['Answer']]}")
+            return False
+        elif resp.get("Status") == 3:
+            print(f"[✓] DoH: {domain} diblokir (NXDOMAIN).")
+            return True
+        else:
+            print("[?] DoH unknown result:", resp)
+            return False
+    except Exception as e:
+        print("[!] Gagal DoH DNS:", e)
+        return False
 
 # === DNS Filtering AdGuard ===
 ADGUARD_DNS = ["94.140.14.14", "94.140.15.15"]
